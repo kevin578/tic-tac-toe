@@ -1,0 +1,17 @@
+#board{
+	width: 450px;
+	height: 450px;
+	background: green;
+}
+
+.spots {
+	vertical-align: top;
+	width: 100px;
+	height: 100px;
+	background: red;
+	display: inline-block;
+	margin: 10px;
+	font-size: 80px;
+	text-align: center;
+
+}
