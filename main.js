@@ -8,7 +8,7 @@ var mainBoard = [
 var huPlayer = 'X'
 var aiPlayer = 'O'
 
-var turn = "human"
+var turn = "human";
 
 function clicked() {
 	console.log("clicked")
@@ -43,14 +43,14 @@ function getOpenSpots(arr) {
 
 function minimax(newBoard, player){
 
-  
+
   var openSpots = getOpenSpots(newBoard);
 
-  
-  if (checkBoard(mainBoard, huPlayer)){
+
+  if (checkBoard(newBoard, huPlayer)){
      return {score:-1};
   }
-	else if (checkBoard(mainBoard, aiPlayer)){
+	else if (checkBoard(newBoard, aiPlayer)){
     return {score:1};
 	}
   else if (openSpots.length === 0){
@@ -59,10 +59,10 @@ function minimax(newBoard, player){
 
     var moves = [];
 
-    
+
     for (var i = 0; i < openSpots.length; i++){
 
-		var move = {};    	
+		var move = {};
     	move.index = newBoard[openSpots[i]];
       	newBoard[openSpots[i]] = player;
 
@@ -80,11 +80,11 @@ function minimax(newBoard, player){
     }
 
 	var bestMove;
-      
+
     if(player === aiPlayer){
 
         var bestScore = -8;
-        
+
         for(var i = 0; i < moves.length; i++){
           if(moves[i].score > bestScore){
             bestScore = moves[i].score;
