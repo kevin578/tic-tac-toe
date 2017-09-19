@@ -10,6 +10,46 @@ var aiPlayer = 'O'
 
 var turn = "human";
 
+
+var cellKey = {
+	square1: 0,
+	square2: 1,
+	square3: 2,
+	square4: 3,
+	square5: 4,
+	square6: 5,
+	square7: 6,
+	square8: 7,
+}
+
+
+
+
+
+humanTurn();
+
+function humanTurn(){
+	let square = document.getElementsByClassName('square');
+	for (var i = 0; i < square.length; i++) {
+	    square[i].addEventListener('click', function() {
+				document.getElementById(this.id).innerHTML = huPlayer;
+				mainBoard[cellKey[this.id]] = huPlayer;
+				turn = "computer";
+				computerTurn();
+			});
+	}
+}
+
+
+function computerTurn() {
+  var compValue = minimax(mainBoard, aiPlayer);
+  mainBoard[compValue.index] = aiPlayer;
+  var cellId = getKeyByValue(cellKey, compValue.index);
+  document.getElementById(cellId).innerHTML = aiPlayer; 
+}
+
+
+
 function clicked() {
 	console.log("clicked")
 	/*if (turn = "human") {
@@ -34,11 +74,7 @@ function checkBoard(board, i) {
   }
 }
 function getOpenSpots(arr) {
-  return arr.filter(function(x){
-    if (typeof x === 'number') {
-      return x;
-          }
-  });
+    return  arr.filter(s => s != "O" && s != "X");
 }
 
 function minimax(newBoard, player){
@@ -107,9 +143,9 @@ function minimax(newBoard, player){
 }
 
 
-console.log (minimax(mainBoard, huPlayer))
-
-
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
+}
 
 
 }
