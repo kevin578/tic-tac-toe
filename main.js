@@ -20,24 +20,29 @@ var cellKey = {
 	square6: 5,
 	square7: 6,
 	square8: 7,
+  square9: 8
 }
 
 
 
 
-
-humanTurn();
-
-function humanTurn(){
 	let square = document.getElementsByClassName('square');
 	for (var i = 0; i < square.length; i++) {
 	    square[i].addEventListener('click', function() {
-				document.getElementById(this.id).innerHTML = huPlayer;
-				mainBoard[cellKey[this.id]] = huPlayer;
-				turn = "computer";
-				computerTurn();
+				humanTurn(this.id);
 			});
 	}
+
+
+function humanTurn(id) {
+      if (cellKey[id] != 'frozen'){
+        document.getElementById(id).innerHTML = huPlayer;
+        mainBoard[cellKey[id]] = huPlayer;
+        cellKey[id] = "frozen";
+        checkWin(); 
+        computerTurn();
+
+  }
 }
 
 
@@ -45,17 +50,28 @@ function computerTurn() {
   var compValue = minimax(mainBoard, aiPlayer);
   mainBoard[compValue.index] = aiPlayer;
   var cellId = getKeyByValue(cellKey, compValue.index);
-  document.getElementById(cellId).innerHTML = aiPlayer; 
+  cellKey[cellId] = 'frozen';
+  if (cellId) document.getElementById(cellId).innerHTML = aiPlayer;
+  checkWin(); 
+}
+
+
+function checkWin() {
+  if (getOpenSpots(mainBoard) == 0) {
+    document.getElementById('postGame').innerHTML = "It's a tie!";
+  }
+  else if (checkBoard(mainBoard, aiPlayer) == true) {
+    document.getElementById('postGame').innerHTML = "You lose!";
+  }
+  else if (checkBoard(mainBoard, aiPlayer) == true) {
+    document.getElementById('postGame').innerHTML = "You win!";
+  }
+
+
 }
 
 
 
-function clicked() {
-	console.log("clicked")
-	/*if (turn = "human") {
-		document.getElementbyId(divName).innerHTML = huPlayer;
-	}*/
-}
 
 function checkBoard(board, i) {
   if( board[0] == i && board[1] == i && board[2] == i || //across top
@@ -119,7 +135,7 @@ function minimax(newBoard, player){
 
     if(player === aiPlayer){
 
-        var bestScore = -8;
+        var bestScore = -10;
 
         for(var i = 0; i < moves.length; i++){
           if(moves[i].score > bestScore){
@@ -130,7 +146,7 @@ function minimax(newBoard, player){
       }
       else {
 
-    var bestScore = 8;
+    var bestScore = 10;
     for(var i = 0; i < moves.length; i++){
       if(moves[i].score < bestScore){
         bestScore = moves[i].score;
