@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Francois+One');
+
+body{
+	font-family: 'Francois One', sans-serif;
+	font-size: 36px;
+}
+
 #board {
 	margin-top: 50px;
 	margin-left: auto;
@@ -20,6 +27,9 @@
 .square{
     width:100px;
     height:100px;
+    text-align: center;
+    cursor: pointer;
+
 }
 
 .y-border{
@@ -30,4 +40,8 @@
 .x-border{
     border-top:5px solid #57667f;
     border-bottom:5px solid #57667f;
+}
+
+#postGame {
+	display: inline-block;
 }

@@ -1,5 +1,3 @@
-window.onload = function() {
-
 var mainBoard = [
 0,		1,		2,
 3,		4,		5,
@@ -8,7 +6,17 @@ var mainBoard = [
 var huPlayer = 'X'
 var aiPlayer = 'O'
 
-var turn = "human";
+
+var toggleButton = {
+  on: function(){
+    document.getElementById("restart").style.display = "inline-block";
+  },
+  off: function() {
+    document.getElementById("restart").style.display = "none";
+  }
+}
+
+
 
 
 var cellKey = {
@@ -24,15 +32,15 @@ var cellKey = {
 }
 
 
-
-
+window.onload = function(){
+  toggleButton.off();
 	let square = document.getElementsByClassName('square');
 	for (var i = 0; i < square.length; i++) {
 	    square[i].addEventListener('click', function() {
 				humanTurn(this.id);
 			});
 	}
-
+}
 
 function humanTurn(id) {
       if (cellKey[id] != 'frozen'){
@@ -59,16 +67,21 @@ function computerTurn() {
 function checkWin() {
   if (getOpenSpots(mainBoard) == 0) {
     document.getElementById('postGame').innerHTML = "It's a tie!";
+    toggleButton.on();
   }
   else if (checkBoard(mainBoard, aiPlayer) == true) {
     document.getElementById('postGame').innerHTML = "You lose!";
+    toggleButton.on();
   }
   else if (checkBoard(mainBoard, aiPlayer) == true) {
     document.getElementById('postGame').innerHTML = "You win!";
+    toggleButton.on();
   }
 
 
 }
+
+
 
 
 
@@ -100,7 +113,7 @@ function minimax(newBoard, player){
 
 
   if (checkBoard(newBoard, huPlayer)){
-     return {score:-1};
+    return {score:-1};
   }
 	else if (checkBoard(newBoard, aiPlayer)){
     return {score:1};
@@ -163,5 +176,14 @@ function getKeyByValue(object, value) {
   return Object.keys(object).find(key => object[key] === value);
 }
 
+function restart() {
 
+  mainBoard = [0,1,2,3,4,5,6,7,8];
+  for (let[index, key] in cellKey) {
+    //cellKey[key] = index;
+    //document.getElementById(key).innerHTML = "";
+    console.log(index)
+    console.log(key)
+  }
+  toggleButton.off();
 }
