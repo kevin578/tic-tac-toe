@@ -43,5 +43,24 @@ body{
 }
 
 #postGame {
+	margin-top: 30px;
 	display: inline-block;
+
+
+}
+
+button {
+	margin-left: 70px;
+	background: #fcfcfc;
+	border-radius: 2px;
+    border: 1px solid #57667f;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    height: 36px;
+    vertical-align: middle;
+	cursor: pointer;
+
+
+
 }
