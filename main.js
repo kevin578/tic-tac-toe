@@ -48,7 +48,9 @@ function humanTurn(id) {
         mainBoard[cellKey[id]] = huPlayer;
         cellKey[id] = "frozen";
         checkWin(); 
+        if (getOpenSpots(mainBoard).length > 0) {
         computerTurn();
+      }
 
   }
 }
