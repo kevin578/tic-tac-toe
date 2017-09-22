@@ -76,6 +76,8 @@ button {
     height: 36px;
     vertical-align: middle;
 	cursor: pointer;
+	position: relative;
+	bottom: 3px;
 }
 
 
