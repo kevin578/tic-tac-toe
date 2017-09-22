@@ -3,8 +3,8 @@ var mainBoard = [
 3,		4,		5,
 6,		7,		8];
 
-var huPlayer = 'X'
-var aiPlayer = 'O'
+var huPlayer;
+var aiPlayer;
 
 
 var toggleButton = {
@@ -40,6 +40,25 @@ window.onload = function(){
 				humanTurn(this.id);
 			});
 	}
+  document.getElementById('x-start').addEventListener('click', function() {
+    startClick('X');
+  })
+  document.getElementById('o-start').addEventListener('click', function() {
+    startClick('O');
+  })
+
+}
+
+function startClick(letter) {
+  if(letter == "X") {
+    huPlayer = "X";
+    aiPlayer = "O"
+  }
+  else {
+    huPlayer = "O";
+    aiPlayer = "X"
+  }
+  document.getElementById("overlay").style.display = 'none';
 }
 
 function humanTurn(id) {

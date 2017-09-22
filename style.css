@@ -5,12 +5,28 @@ body{
 	font-size: 36px;
 }
 
-#board {
+#overlay {
+	background: #57667f;
+	margin-left: auto;
+	margin-right: auto;
+	width: 325px;
+	height: 325px;
+	z-index: 1;
+	position: absolute;
+	opacity: 0.98;
+	text-align: center;
+	color: #FDFDFD;
+
+
+}
+
+#board{
 	margin-top: 50px;
 	margin-left: auto;
 	margin-right: auto;
 	width: 400px;
 }
+
 
 
 .spots {
@@ -68,4 +84,17 @@ button {
 	margin-right: 80px;
 	font-size: 12px;
 	text-align: right;
+}
+
+#x-start {
+	display: inline-block;
+	margin-right: 100px;
+	font-size: 48px;
+	cursor: pointer;
+}
+
+#o-start {
+	display: inline-block;
+	font-size: 48px;
+	cursor: pointer;
 }
